@@ -16,7 +16,9 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private InputType inputType;
 
     private Vector3 _direction;
-
+    
+    protected List<Rigidbody> _detectedObjects = new List<Rigidbody>();
+    protected List<Collider> _detectedCollider = new List<Collider>();
 
     private void Update()
     {
@@ -38,6 +40,10 @@ public class PlayerBase : MonoBehaviour
     }
 
     virtual protected void Interact()
+    {
+    }
+
+    virtual protected void ScanForObjects()
     {
         
     }
