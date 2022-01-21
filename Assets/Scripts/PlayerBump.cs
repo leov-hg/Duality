@@ -8,8 +8,8 @@ public class PlayerBump : PlayerBase
     [SerializeField] private float ejectForce;
     [SerializeField] private float ejectionRadius;
 
-    private List<Rigidbody> _detectedObjects;
-    private List<Collider> _detectedCollider;
+    private List<Rigidbody> _detectedObjects = new List<Rigidbody>();
+    private List<Collider> _detectedCollider = new List<Collider>();
 
     protected override void Interact()
     {
@@ -17,7 +17,7 @@ public class PlayerBump : PlayerBase
 
         foreach (Rigidbody obj in _detectedObjects)
         {
-            obj.AddForce((obj.transform.position - transform.position).normalized * ejectForce);
+            obj.AddExplosionForce(ejectForce, transform.position, ejectionRadius, 0, ForceMode.Impulse);
         }
     }
 
@@ -26,7 +26,9 @@ public class PlayerBump : PlayerBase
         _detectedCollider = Physics.OverlapSphere(transform.position, ejectionRadius).ToList();
         foreach (Collider col in _detectedCollider)
         {
-            _detectedObjects.Add(col.GetComponent<Rigidbody>());
+            Rigidbody rb = col.GetComponent<Rigidbody>();
+            if (rb != null)
+                _detectedObjects.Add(rb);
         }
     }
 }

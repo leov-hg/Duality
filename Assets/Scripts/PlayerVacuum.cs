@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerVacuum : PlayerBase
 {
+    [SerializeField] private float vacuumForce;
+    
     protected override void Interact()
     {
-        base.Interact();
     }
 }

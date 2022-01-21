@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InputType{GetKey, GetKeyDown}
+
 public class PlayerBase : MonoBehaviour
 {
     [Separator("References", true)]
@@ -11,6 +13,7 @@ public class PlayerBase : MonoBehaviour
 
     [Separator("Settings", true)]
     [SerializeField] private float speed = 1;
+    [SerializeField] private InputType inputType;
 
     private Vector3 _direction;
 
@@ -19,7 +22,11 @@ public class PlayerBase : MonoBehaviour
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
+        else if (inputType == InputType.GetKey && Input.GetKey(KeyCode.E))
         {
             Interact();
         }
