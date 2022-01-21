@@ -27,7 +27,7 @@ public class PlayerBase : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.AddForce(_direction, ForceMode.Acceleration);
+        rb.AddForce(_direction * speed, ForceMode.Acceleration);
     }
 
     virtual protected void Interact()
