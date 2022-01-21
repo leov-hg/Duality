@@ -35,7 +35,7 @@ public class PlayerBase : MonoBehaviour
     }
     protected List<Rigidbody> _detectedObjects = new List<Rigidbody>();
     protected List<Collider> _detectedCollider = new List<Collider>();
-    
+
 
     private void Update()
     {
@@ -48,15 +48,18 @@ public class PlayerBase : MonoBehaviour
         else if (inputType == InputType.GetKey && Input.GetKey(KeyCode.E))
         {
             Interact();
-        _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
-        if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
-        {
-            _targetView = hitInfo.point;
-        }
+            _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
+            if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
+            {
+                _targetView = hitInfo.point;
+            }
 
-        if (rb.velocity.magnitude > 0)
-        {
-            rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
+            if (rb.velocity.magnitude > 0)
+            {
+                rb.rotation = Quaternion.Lerp(rb.rotation,
+                    Quaternion.LookRotation((_targetView - rb.position).normalized),
+                    Time.deltaTime * rotationSmoothSpeed);
+            }
         }
     }
 
