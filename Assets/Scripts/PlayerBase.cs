@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InputType{GetKey, GetKeyDown}
+
 public class PlayerBase : MonoBehaviour
 {
     [Separator("References", true)]
@@ -13,6 +15,7 @@ public class PlayerBase : MonoBehaviour
     [Separator("Settings", true)]
     [SerializeField] private float rotationSmoothSpeed = 1;
     [SerializeField] private float speed = 1;
+    [SerializeField] private InputType inputType;
     [Space(10)]
     [SerializeField] private LayerMask groundLayer;
 
@@ -35,6 +38,13 @@ public class PlayerBase : MonoBehaviour
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
+        if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
+        else if (inputType == InputType.GetKey && Input.GetKey(KeyCode.E))
+        {
+            Interact();
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
         if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
         {
