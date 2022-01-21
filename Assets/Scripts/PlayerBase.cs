@@ -7,17 +7,44 @@ using UnityEngine;
 public class PlayerBase : MonoBehaviour
 {
     [Separator("References", true)]
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] private PlayerRef playerRef;
+    [SerializeField] protected Rigidbody rb;
 
     [Separator("Settings", true)]
+    [SerializeField] private float rotationSmoothSpeed = 1;
     [SerializeField] private float speed = 1;
+    [Space(10)]
+    [SerializeField] private LayerMask groundLayer;
+
+    protected float _currentSpeed = 0;
 
     private Vector3 _direction;
+    private Vector3 _targetView;
+    private Camera _mainCam;
+    private Ray _camRay;
 
+    private void Awake()
+    {
+        _mainCam = Camera.main;
+        playerRef.playerBase = this;
+
+        _currentSpeed = speed;
+    }
 
     private void Update()
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+
+        _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
+        if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
+        {
+            _targetView = hitInfo.point;
+        }
+
+        if (rb.velocity.magnitude > 0)
+        {
+            rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
+        }
     }
 
     private void FixedUpdate()
