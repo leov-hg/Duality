@@ -18,6 +18,11 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
     }
 
     private void FixedUpdate()
