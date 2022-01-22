@@ -71,7 +71,7 @@ public class PlayerBase : MonoBehaviour
         _detectedObjects.Clear();
         foreach (Collider col in _detectedCollider)
         {
-            PhysicsHandler rb = col.GetComponent<PhysicsHandler>();
+            PhysicsHandler rb = col.GetComponentInParent<PhysicsHandler>();
             if (rb != null)
                 _detectedObjects.Add(rb);
         }
