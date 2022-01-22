@@ -9,7 +9,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public Action onDeath;
+    public Action<Enemy> onDeath;
     
     [Separator("References", true)]
     [SerializeField] private PlayerRef[] players;
@@ -131,7 +131,7 @@ public class Enemy : MonoBehaviour
     [ButtonMethod()]
     public void Death()
     {
-        onDeath?.Invoke();
+        onDeath?.Invoke(this);
         animator.enabled = false;
         for (int i = 0; i < ragdollRBs.Count; i++)
         {

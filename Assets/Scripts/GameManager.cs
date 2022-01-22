@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager>
     public event Action onLevelStart;
     public event Action onLevelComplete;
 
+    private bool _levelStarted;
+
     private void Awake()
     {
         for (int i = 0; i < poolCount; i++)
@@ -40,7 +42,7 @@ public class GameManager : Singleton<GameManager>
             enemies.Enqueue(Instantiate(enemyPrefab, transform));
         }
 
-        focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true).SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
+        
     }
 
     private void StartLevel()
@@ -49,6 +51,13 @@ public class GameManager : Singleton<GameManager>
         _currentRound = 0;
         onLevelStart?.Invoke();
         StartCoroutine(RoundsLogic());
+        _levelStarted = true;
+    }
+
+    private void Update()
+    {
+        if (!_levelStarted && Input.GetMouseButtonDown(0))
+            focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true).SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
     }
 
     private IEnumerator RoundsLogic()
@@ -58,8 +67,10 @@ public class GameManager : Singleton<GameManager>
             int enemiesToSpawnRemaining = enemiesPerRound;
             while (true)
             {
-                activeEnemies.Add(enemies.Dequeue());
+                Enemy spawnedEnemy = enemies.Dequeue();
+                activeEnemies.Add(spawnedEnemy);
                 activeEnemies[activeEnemies.Count - 1].Spawn(spawnPointsHolder.GetChild(UnityEngine.Random.Range(0, spawnPointsHolder.childCount)).position);
+                spawnedEnemy.onDeath += OnZombieDeath;
                 enemiesToSpawnRemaining--;
                 if (enemiesToSpawnRemaining == 0)
                 {
@@ -76,5 +87,16 @@ public class GameManager : Singleton<GameManager>
     {
         onLevelComplete?.Invoke();
         SceneManager.LoadScene(0);
+    }
+
+    public void OnZombieDeath(Enemy deadEnemy)
+    {
+        deadEnemy.onDeath -= OnZombieDeath;
+        activeEnemies.Remove(deadEnemy);
+
+        if (activeEnemies.Count == 0)
+        {
+            onLevelComplete?.Invoke();
+        }
     }
 }
