@@ -13,10 +13,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject meshGO;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
 
     [Separator("Settings", true)]
     [SerializeField] private float retargettingDelay = 0.2f;
     [SerializeField] private float speed = 10;
+    [SerializeField] private float velocityAanimFactor = 30;
+    [SerializeField] private float rotationSmoothSpeed = 10;
 
     //private Sequence sequence;
     private List<PlayerBase> activePlayers = new List<PlayerBase>();
@@ -53,8 +56,25 @@ public class Enemy : MonoBehaviour
         DOVirtual.DelayedCall(retargettingDelay, RefreshTargetting).SetLoops(-1, LoopType.Restart).SetDelay(retargettingDelay);
     }
 
+    private void Update()
+    {
+        if (!meshGO.activeSelf)
+        {
+            return;
+        }
+
+        animator.SetFloat("Velocity", rb.velocity.magnitude / velocityAanimFactor);
+
+        rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(navMeshAgent.destination - rb.position).normalized, Time.deltaTime * rotationSmoothSpeed);
+    }
+
     private void FixedUpdate()
     {
+        if (!meshGO.activeSelf)
+        {
+            return;
+        }
+
         rb.AddForce((nextNavigationPoint - rb.position).normalized * speed, ForceMode.Acceleration);
     }
 
