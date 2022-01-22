@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bumpWeight: 20
-  vacuumWeight: 3
+  vacuumWeight: 40
 --- !u!1 &3190431865379312878
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using MyBox;
 using System.Collections;
@@ -8,6 +9,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public Action onDeath;
+    
     [Separator("References", true)]
     [SerializeField] private PlayerRef[] players;
     [SerializeField] private GameObject meshGO;
@@ -125,8 +128,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    [ButtonMethod()]
     public void Death()
     {
+        onDeath?.Invoke();
+        animator.enabled = false;
         for (int i = 0; i < ragdollRBs.Count; i++)
         {
             ragdollRBs[i].isKinematic = false;

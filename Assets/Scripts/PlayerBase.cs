@@ -23,6 +23,7 @@ public class PlayerBase : MonoBehaviour
     protected float _currentSpeed = 0;
     protected List<PhysicsHandler> _detectedObjects = new List<PhysicsHandler>();
     protected List<Collider> _detectedCollider = new List<Collider>();
+    protected Animator _animator;
 
     private Vector3 _direction;
     private Vector3 _targetView;
@@ -34,6 +35,7 @@ public class PlayerBase : MonoBehaviour
     {
         _mainCam = Camera.main;
         playerRef.playerBase = this;
+        _animator = GetComponentInChildren<Animator>();
 
         _currentSpeed = speed;
     }
@@ -50,6 +52,7 @@ public class PlayerBase : MonoBehaviour
         
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         _direction = Vector3.ClampMagnitude(_direction, 1);
+
         lowerBody.LookAt(lowerBody.transform.position + _direction);
 
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
@@ -60,18 +63,31 @@ public class PlayerBase : MonoBehaviour
 
         upperBody.rotation = Quaternion.Lerp(upperBody.rotation, Quaternion.LookRotation((_targetView - upperBody.position).normalized), Time.deltaTime * rotationSmoothSpeed);
 
-        if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
+        if (inputType == InputType.GetKeyDown)
         {
-            Interact();
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact();
+                _animator.SetTrigger("Bump");
+            }
         }
-        else if (inputType == InputType.GetKey && Input.GetKey(KeyCode.E))
+        else if (inputType == InputType.GetKey)
         {
-            Interact();
+            if (Input.GetKey(KeyCode.E))
+            {
+                Interact();
+
+                _animator.SetBool("Vacuuming", true);
+            }
+            else
+            {
+                _animator.SetBool("Vacuuming", false);
+            }
         }
     }
 
     private void FixedUpdate()
-    {
+    {   
         if (!_active) return;
         
         rb.AddForce(_direction * speed, ForceMode.Acceleration);

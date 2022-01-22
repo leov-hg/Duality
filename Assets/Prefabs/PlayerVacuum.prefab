@@ -1,41 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &1799431330
+--- !u!65 &7852003463468737106
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5455766736506864081}
+  m_GameObject: {fileID: 7030067187227567457}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 15}
   m_Center: {x: 0, y: 1, z: 8.57}
---- !u!114 &-4849110048506521736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5455766736506864081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77461c3bd47e5034581ddea4bb73e839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRef: {fileID: 11400000, guid: 1cfd63a9e7660d94b9e6c50d79ff04fe, type: 2}
-  rb: {fileID: 5455766736506864095}
-  upperBody: {fileID: 974922715341500783}
-  lowerBody: {fileID: 7367467712303082471}
-  rotationSmoothSpeed: 20
-  speed: 60
-  inputType: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  vacuumForce: 10
 --- !u!114 &1044407408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +83,29 @@ MonoBehaviour:
   m_ReferenceObject: {fileID: 0}
   m_DistanceToObject: 20
   m_Multithread: 1
+--- !u!114 &-4849110048506521736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455766736506864081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77461c3bd47e5034581ddea4bb73e839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRef: {fileID: 11400000, guid: 1cfd63a9e7660d94b9e6c50d79ff04fe, type: 2}
+  rb: {fileID: 5455766736506864095}
+  upperBody: {fileID: 974922715341500783}
+  lowerBody: {fileID: 7367467712303082471}
+  rotationSmoothSpeed: 20
+  speed: 60
+  inputType: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  vacuumForce: 10
 --- !u!1001 &1330718964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163,6 +163,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f5fefa828d6bc448b2f4a3844c9748, type: 3}
+--- !u!1 &7030067187227567457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7030067188514229653, guid: 25f5fefa828d6bc448b2f4a3844c9748, type: 3}
+  m_PrefabInstance: {fileID: 1330718964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &974922715341500783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 974922714415536539, guid: 25f5fefa828d6bc448b2f4a3844c9748, type: 3}
