@@ -1,3 +1,4 @@
+using System;
 using MyBox;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class PlayerBase : MonoBehaviour
     private Vector3 _targetView;
     private Camera _mainCam;
     private Ray _camRay;
+    private bool _active;
 
     private void Awake()
     {
@@ -33,9 +35,17 @@ public class PlayerBase : MonoBehaviour
 
         _currentSpeed = speed;
     }
-    
+
+    private void Start()
+    {
+        GameManager.Instance.onLevelStart += OnLevelStart;
+    }
+
     protected virtual void Update()
     {
+        if (!_active) return;
+        
+        
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
@@ -58,6 +68,8 @@ public class PlayerBase : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_active) return;
+        
         rb.AddForce(_direction * speed, ForceMode.Acceleration);
     }
 
@@ -85,5 +97,10 @@ public class PlayerBase : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         _detectedCollider.Remove(other);
+    }
+
+    public void OnLevelStart()
+    {
+        _active = true;
     }
 }
