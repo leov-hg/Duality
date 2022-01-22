@@ -20,6 +20,8 @@ public class PlayerVacuum : PlayerBase
     
     protected override void ScanForObjects()
     {
+        base.ScanForObjects();
+        
         _detectedCollider = Physics
             .OverlapBox(transform.position + (transform.forward * detectionBoxSize.z), detectionBoxSize).ToList();
         foreach (Collider col in _detectedCollider)

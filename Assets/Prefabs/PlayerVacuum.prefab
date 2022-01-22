@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77461c3bd47e5034581ddea4bb73e839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRef: {fileID: 11400000, guid: 1cfd63a9e7660d94b9e6c50d79ff04fe, type: 2}
   rb: {fileID: 5455766736506864095}
+  rotationSmoothSpeed: 1
   speed: 1
   inputType: 0
-  vacuumForce: 5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  vacuumForce: 1
   detectionBoxSize: {x: 2, y: 1, z: 10}
 --- !u!1001 &7115613132847359291
 PrefabInstance:

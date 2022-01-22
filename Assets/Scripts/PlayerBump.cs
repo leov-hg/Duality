@@ -18,6 +18,8 @@ public class PlayerBump : PlayerBase
 
     protected override void ScanForObjects()
     {
+        base.ScanForObjects();
+        
         _detectedCollider = Physics.OverlapSphere(transform.position, ejectionRadius).ToList();
         foreach (Collider col in _detectedCollider)
         {

@@ -73,6 +73,7 @@ public class PlayerBase : MonoBehaviour
 
     virtual protected void ScanForObjects()
     {
-
+        _detectedCollider.Clear();
+        _detectedObjects.Clear();
     }
 }
