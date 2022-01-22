@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using UnityEngine;
 
 public class PlayerBump : PlayerBase
@@ -6,26 +6,14 @@ public class PlayerBump : PlayerBase
     [SerializeField] private float ejectForce;
     [SerializeField] private float ejectionRadius;
 
+
     protected override void Interact()
     {
-        ScanForObjects();
+        base.Interact();
 
-        foreach (Rigidbody obj in _detectedObjects)
+        foreach (PhysicsHandler obj in _detectedObjects)
         {
-            obj.AddExplosionForce(ejectForce, transform.position, ejectionRadius, 0, ForceMode.Impulse);
-        }
-    }
-
-    protected override void ScanForObjects()
-    {
-        base.ScanForObjects();
-        
-        _detectedCollider = Physics.OverlapSphere(transform.position, ejectionRadius).ToList();
-        foreach (Collider col in _detectedCollider)
-        {
-            Rigidbody rb = col.GetComponent<Rigidbody>();
-            if (rb != null)
-                _detectedObjects.Add(rb);
+            obj.GetComponent<Rigidbody>().AddExplosionForce(ejectForce, transform.position, ejectionRadius, 0, ForceMode.Impulse);
         }
     }
 }

@@ -14,14 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRef: {fileID: 11400000, guid: 1cfd63a9e7660d94b9e6c50d79ff04fe, type: 2}
   rb: {fileID: 5455766736506864095}
-  rotationSmoothSpeed: 1
-  speed: 1
+  rotationSmoothSpeed: 20
+  speed: 60
   inputType: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  vacuumForce: 1
-  detectionBoxSize: {x: 2, y: 1, z: 10}
+  vacuumForce: 10
+--- !u!65 &1799431330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455766736506864081}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 15}
+  m_Center: {x: 0, y: 1, z: 8.57}
 --- !u!1001 &7115613132847359291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35,7 +47,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248422, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.59
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248422, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_LocalPosition.y

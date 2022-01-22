@@ -1,6 +1,4 @@
 using MyBox;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +18,8 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     protected float _currentSpeed = 0;
+    protected List<PhysicsHandler> _detectedObjects = new List<PhysicsHandler>();
+    protected List<Collider> _detectedCollider = new List<Collider>();
 
     private Vector3 _direction;
     private Vector3 _targetView;
@@ -33,10 +33,7 @@ public class PlayerBase : MonoBehaviour
 
         _currentSpeed = speed;
     }
-    protected List<Rigidbody> _detectedObjects = new List<Rigidbody>();
-    protected List<Collider> _detectedCollider = new List<Collider>();
-
-
+    
     private void Update()
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
@@ -69,11 +66,27 @@ public class PlayerBase : MonoBehaviour
 
     virtual protected void Interact()
     {
+        ScanForObjects();
+    }
+    
+    protected void ScanForObjects()
+    {
+        _detectedObjects.Clear();
+        foreach (Collider col in _detectedCollider)
+        {
+            PhysicsHandler rb = col.GetComponent<PhysicsHandler>();
+            if (rb != null)
+                _detectedObjects.Add(rb);
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        _detectedCollider.Add(other);
     }
 
-    virtual protected void ScanForObjects()
+    private void OnTriggerExit(Collider other)
     {
-        _detectedCollider.Clear();
-        _detectedObjects.Clear();
+        _detectedCollider.Remove(other);
     }
 }
