@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PhysicsHandler : MonoBehaviour
 {
-    public float bumpWeight;
-    public float vacuumWeight;
+    public float bumpWeight = 1;
+    public float vacuumWeight = 1;
 
     private Rigidbody _rb;
     public Rigidbody Rb => _rb;

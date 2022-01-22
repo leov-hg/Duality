@@ -34,7 +34,7 @@ public class PlayerBase : MonoBehaviour
         _currentSpeed = speed;
     }
     
-    private void Update()
+    protected virtual void Update()
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
