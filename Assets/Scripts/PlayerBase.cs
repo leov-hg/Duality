@@ -48,13 +48,10 @@ public class PlayerBase : MonoBehaviour
         }
 
         if (rb.velocity.magnitude > 0)
-
-            if (rb.velocity.magnitude > 0)
-            {
-                rb.rotation = Quaternion.Lerp(rb.rotation,
-                    Quaternion.LookRotation((_targetView - rb.position).normalized),
-                    Time.deltaTime * rotationSmoothSpeed);
-            }
+        {
+            rb.rotation = Quaternion.Lerp(rb.rotation,
+                Quaternion.LookRotation((_targetView - rb.position).normalized),
+                Time.deltaTime * rotationSmoothSpeed);
         }
 
         if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
@@ -78,6 +75,6 @@ public class PlayerBase : MonoBehaviour
 
     virtual protected void ScanForObjects()
     {
-        
+
     }
 }
