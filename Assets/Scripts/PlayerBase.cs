@@ -49,6 +49,7 @@ public class PlayerBase : MonoBehaviour
         
         
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        _direction = Vector3.ClampMagnitude(_direction, 1);
         lowerBody.LookAt(lowerBody.transform.position + _direction);
 
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
