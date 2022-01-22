@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private PhysicsHandler physicsHandler;
 
     [Separator("Settings", true)]
     [SerializeField] private float retargettingDelay = 0.2f;
@@ -21,10 +22,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float velocityAanimFactor = 30;
     [SerializeField] private float rotationSmoothSpeed = 10;
 
-    //private Sequence sequence;
     private List<PlayerBase> activePlayers = new List<PlayerBase>();
     private Vector3[] navigationPoints;
     private Vector3 nextNavigationPoint;
+    private List<Rigidbody> ragdollRBs = new List<Rigidbody>();
 
     private void Awake()
     {
@@ -33,8 +34,8 @@ public class Enemy : MonoBehaviour
         rb.detectCollisions = false;
         rb.isKinematic = true;
 
-        //sequence = DOTween.Sequence();
-        //sequence.Append().SetLoops(-1, LoopType.Restart);
+        ragdollRBs = GetComponentsInChildren<Rigidbody>().ToList();
+        ragdollRBs.Remove(rb);
 
         for (int i = 0; i < players.Length; i++)
         {
@@ -43,6 +44,23 @@ public class Enemy : MonoBehaviour
                 activePlayers.Add(players[i].playerBase);
             }
         }
+
+        physicsHandler.onBumped += PhysicsHandler_onBumped;
+    }
+
+    private void PhysicsHandler_onBumped()
+    {
+        animator.SetTrigger("Knockback");
+    }
+
+    public void KnockbackStart()
+    {
+        animator.applyRootMotion = true;
+    }
+
+    public void KnockbackEnd()
+    {
+        animator.applyRootMotion = false;
     }
 
     public void Spawn(Vector3 spawnPos)
