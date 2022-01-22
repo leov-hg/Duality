@@ -44,10 +44,7 @@ public class PlayerBase : MonoBehaviour
             _targetView = hitInfo.point;
         }
 
-        if (rb.velocity.magnitude > 0)
-        {
-            rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
-        }
+        rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
 
         if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
         {
