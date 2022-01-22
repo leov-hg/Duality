@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204912da178726d4191b5e41bc6c2a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRef: {fileID: 11400000, guid: e6559baa32e010c48864b39bc0fcb10f, type: 2}
+  playerRef: {fileID: 11400000, guid: 1cfd63a9e7660d94b9e6c50d79ff04fe, type: 2}
   rb: {fileID: 7671547938936445430}
   rotationSmoothSpeed: 1
   speed: 1
@@ -75,7 +75,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248426, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_Name
-      value: PlayerBump
+      value: PlayerBump Test B
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2957029326234248423, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}

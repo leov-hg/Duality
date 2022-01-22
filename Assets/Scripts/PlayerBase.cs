@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InputType{GetKey, GetKeyDown}
+public enum InputType { GetKey, GetKeyDown }
 
 public class PlayerBase : MonoBehaviour
 {
@@ -38,13 +38,6 @@ public class PlayerBase : MonoBehaviour
     {
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
 
-        if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
-        {
-            Interact();
-        }
-        else if (inputType == InputType.GetKey && Input.GetKey(KeyCode.E))
-        {
-            Interact();
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
         if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
         {
@@ -55,6 +48,15 @@ public class PlayerBase : MonoBehaviour
         {
             rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
         }
+
+        if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
+        else if (inputType == InputType.GetKey && Input.GetKey(KeyCode.E))
+        {
+            Interact();
+        }
     }
 
     private void FixedUpdate()
@@ -64,6 +66,6 @@ public class PlayerBase : MonoBehaviour
 
     virtual protected void Interact()
     {
-        
+
     }
 }
