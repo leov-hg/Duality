@@ -10,6 +10,8 @@ public class PlayerBase : MonoBehaviour
     [Separator("References", true)]
     [SerializeField] private PlayerRef playerRef;
     [SerializeField] protected Rigidbody rb;
+    [SerializeField] Transform upperBody;
+    [SerializeField] Transform lowerBody;
 
     [Separator("Settings", true)]
     [SerializeField] private float rotationSmoothSpeed = 1;
@@ -47,6 +49,7 @@ public class PlayerBase : MonoBehaviour
         
         
         _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        lowerBody.LookAt(lowerBody.transform.position + _direction);
 
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
         if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
@@ -54,7 +57,7 @@ public class PlayerBase : MonoBehaviour
             _targetView = hitInfo.point;
         }
 
-        rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
+        upperBody.rotation = Quaternion.Lerp(upperBody.rotation, Quaternion.LookRotation((_targetView - upperBody.position).normalized), Time.deltaTime * rotationSmoothSpeed);
 
         if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
         {
