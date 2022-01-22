@@ -159,7 +159,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55816
+  m_Name: pb_Mesh160128
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -671,7 +671,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55614
+  m_Name: pb_Mesh159940
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1131,10 +1131,10 @@ MonoBehaviour:
   focusCamTargetPoint: {fileID: 27045585}
   endModule: {fileID: 5690255124794677021}
   spawnPointsHolder: {fileID: 1633590013}
-  focusingGoalSpeed: 2
+  focusingGoalSpeed: 5
   poolCount: 100
   btwRoundDelay: 10
-  enemiesPerRound: 20
+  enemiesPerRound: 60
   enemySpawnDelay: 0.5
 --- !u!4 &427412492
 Transform:
@@ -3024,7 +3024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &979640631
 Transform:
   m_ObjectHideFlags: 0
@@ -3049,7 +3049,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55750
+  m_Name: pb_Mesh160068
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3273,7 +3273,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55862
+  m_Name: pb_Mesh160174
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3789,7 +3789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1054990539
 Transform:
   m_ObjectHideFlags: 0
@@ -3844,7 +3844,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh55588
+  m_Name: pb_Mesh159918
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5677,7 +5677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1563540729
 Transform:
   m_ObjectHideFlags: 0
@@ -6451,7 +6451,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1983247936}
-  m_LocalRotation: {x: 0.49423492, y: -0.000000055117297, z: 0.000000031335563, w: 0.86932844}
+  m_LocalRotation: {x: 0.4942349, y: 0.00000003712844, z: -0.000000021108441, w: 0.86932844}
   m_LocalPosition: {x: 0.36382073, y: 12.41, z: 2.4035225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
