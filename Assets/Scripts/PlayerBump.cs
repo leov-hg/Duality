@@ -5,6 +5,7 @@ public class PlayerBump : PlayerBase
 {
     [SerializeField] private float ejectForce;
     [SerializeField] private float cooldown;
+    [SerializeField] private float detectionAngle = 15;
 
     private float _timeCpt;
 
@@ -23,7 +24,10 @@ public class PlayerBump : PlayerBase
 
             foreach (PhysicsHandler obj in _detectedObjects)
             {
-                obj.ApplyBumpForce(obj.transform.position - transform.position, ejectForce);
+                if (Mathf.Abs(Vector3.Angle(transform.forward, (obj.transform.position - transform.position).normalized)) < detectionAngle)
+                {
+                    obj.ApplyBumpForce(obj.transform.position - transform.position, ejectForce);
+                }
             }
 
             _timeCpt = 0;
