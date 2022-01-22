@@ -11,10 +11,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - InvisibleWall
+  - Object
+  - Controller
+  - Ragdoll
   - 
   - 
   - 

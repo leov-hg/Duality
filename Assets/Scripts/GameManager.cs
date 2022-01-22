@@ -13,11 +13,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private PlayerRef[] players;
     [SerializeField] private Animator camerasAnim;
     [SerializeField] private Transform focusCamTargetPoint;
-    [SerializeField] private EndModule endModule;
+    public EndModule endModule;
     [SerializeField] private Transform spawnPointsHolder;
 
     [Separator("Rounds", true)]
-    [SerializeField] private int focusingGoalSpeed = 2;
+    [SerializeField] private float focusingGoalSpeed = 2;
     [SerializeField] private int poolCount = 100;
     [SerializeField] private float btwRoundDelay = 10;
     [SerializeField] private int enemiesPerRound = 20;
@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
             enemies.Enqueue(Instantiate(enemyPrefab, transform));
         }
 
-        focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
+        focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true).SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
     }
 
     private void StartLevel()
@@ -53,20 +53,23 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator RoundsLogic()
     {
-        int enemiesToSpawnRemaining = enemiesPerRound;
         while (true)
         {
-            activeEnemies.Add(enemies.Dequeue());
-            activeEnemies[activeEnemies.Count - 1].Spawn(spawnPointsHolder.GetChild(UnityEngine.Random.Range(0, spawnPointsHolder.childCount)).position);
-            enemiesToSpawnRemaining--;
-            if (enemiesToSpawnRemaining == 0)
+            int enemiesToSpawnRemaining = enemiesPerRound;
+            while (true)
             {
-                break;
+                activeEnemies.Add(enemies.Dequeue());
+                activeEnemies[activeEnemies.Count - 1].Spawn(spawnPointsHolder.GetChild(UnityEngine.Random.Range(0, spawnPointsHolder.childCount)).position);
+                enemiesToSpawnRemaining--;
+                if (enemiesToSpawnRemaining == 0)
+                {
+                    break;
+                }
+                yield return new WaitForSeconds(enemySpawnDelay);
             }
-            yield return new WaitForSeconds(enemySpawnDelay);
-        }
 
-        yield return new WaitForSeconds(btwRoundDelay);
+            yield return new WaitForSeconds(btwRoundDelay);
+        }
     }
 
     public void CompleteLevel()
