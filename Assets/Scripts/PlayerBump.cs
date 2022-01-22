@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerBump : PlayerBase
 {
     [SerializeField] private float ejectForce;
-    [SerializeField] private float ejectionRadius;
 
 
     protected override void Interact()
