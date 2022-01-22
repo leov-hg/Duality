@@ -509,7 +509,7 @@ Transform:
   m_GameObject: {fileID: 2957029326234248426}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_Children:
   - {fileID: 5697004671628804240}
   - {fileID: 7261759245383003008}
@@ -538,7 +538,7 @@ MonoBehaviour:
   animator: {fileID: 1868993038396742378}
   physicsHandler: {fileID: 397961770590569430}
   retargettingDelay: 0.05
-  speed: 0
+  speed: 5
   velocityAanimFactor: 1
   rotationSmoothSpeed: 10
 --- !u!54 &7631540718416667964

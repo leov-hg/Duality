@@ -54,7 +54,7 @@ public class PlayerBase : MonoBehaviour
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
         if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
         {
-            _targetView = hitInfo.point;
+            _targetView = hitInfo.point.SetY(upperBody.transform.position.y);
         }
 
         upperBody.rotation = Quaternion.Lerp(upperBody.rotation, Quaternion.LookRotation((_targetView - upperBody.position).normalized), Time.deltaTime * rotationSmoothSpeed);
