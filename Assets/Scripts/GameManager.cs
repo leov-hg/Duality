@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Transform focusCamTargetPoint;
     public EndModule endModule;
     [SerializeField] private Transform spawnPointsHolder;
+    [SerializeField] private CanvasGroup menuCanvas;
 
     [Separator("Rounds", true)]
     [SerializeField] private float focusingGoalSpeed = 2;
@@ -57,7 +58,11 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         if (!_levelStarted && Input.GetMouseButtonDown(0))
-            focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true).SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
+        {
+            menuCanvas.DOFade(0, 0.5f);
+            focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true)
+                .SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
+        }
     }
 
     private IEnumerator RoundsLogic()
