@@ -1,15 +1,16 @@
 using System;
-using MyBox;
 using UnityEngine;
 
 public class PhysicsHandler : MonoBehaviour
 {
     public float bumpWeight = 1;
     public float vacuumWeight = 1;
-    public float bumpUpliftModifier;
 
     private Rigidbody _rb;
     public Rigidbody Rb => _rb;
+
+    public event Action onBumped;
+    public event Action onVacuumed;
 
     private void Awake()
     {
@@ -18,7 +19,8 @@ public class PhysicsHandler : MonoBehaviour
 
     public void ApplyBumpForce(Vector3 forceDirection, float ejectForce)
     {
-        _rb.AddForce(forceDirection.SetY(bumpUpliftModifier).normalized * (ejectForce / bumpWeight), ForceMode.VelocityChange);
+        _rb.AddForce(forceDirection.normalized * (ejectForce / bumpWeight), ForceMode.VelocityChange);
+        onBumped?.Invoke();
     }
 
     public void ApplyVacuumForce(Vector3 forceDirection, float vacuumforce)
