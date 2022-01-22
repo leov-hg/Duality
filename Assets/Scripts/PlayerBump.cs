@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,12 +6,9 @@ public class PlayerBump : PlayerBase
     [SerializeField] private float ejectForce;
     [SerializeField] private float ejectionRadius;
 
-    private List<Rigidbody> _detectedObjects = new List<Rigidbody>();
-    private List<Collider> _detectedCollider = new List<Collider>();
-
     protected override void Interact()
     {
-        ScanObjectsAround();
+        ScanForObjects();
 
         foreach (Rigidbody obj in _detectedObjects)
         {
@@ -21,7 +16,7 @@ public class PlayerBump : PlayerBase
         }
     }
 
-    private void ScanObjectsAround()
+    protected override void ScanForObjects()
     {
         _detectedCollider = Physics.OverlapSphere(transform.position, ejectionRadius).ToList();
         foreach (Collider col in _detectedCollider)

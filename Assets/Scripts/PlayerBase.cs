@@ -33,6 +33,9 @@ public class PlayerBase : MonoBehaviour
 
         _currentSpeed = speed;
     }
+    protected List<Rigidbody> _detectedObjects = new List<Rigidbody>();
+    protected List<Collider> _detectedCollider = new List<Collider>();
+
 
     private void Update()
     {
@@ -45,8 +48,13 @@ public class PlayerBase : MonoBehaviour
         }
 
         if (rb.velocity.magnitude > 0)
-        {
-            rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation((_targetView - rb.position).normalized), Time.deltaTime * rotationSmoothSpeed);
+
+            if (rb.velocity.magnitude > 0)
+            {
+                rb.rotation = Quaternion.Lerp(rb.rotation,
+                    Quaternion.LookRotation((_targetView - rb.position).normalized),
+                    Time.deltaTime * rotationSmoothSpeed);
+            }
         }
 
         if (inputType == InputType.GetKeyDown && Input.GetKeyDown(KeyCode.E))
@@ -66,6 +74,10 @@ public class PlayerBase : MonoBehaviour
 
     virtual protected void Interact()
     {
+    }
 
+    virtual protected void ScanForObjects()
+    {
+        
     }
 }
