@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
     private Vector3 nextNavigationPoint;
     private List<Rigidbody> ragdollRBs = new List<Rigidbody>();
 
+    private bool stuned = false;
+    private float velocityAnimSmooth = 0;
+
+
     private void Awake()
     {
         meshGO.SetActive(false);
@@ -36,6 +40,11 @@ public class Enemy : MonoBehaviour
 
         ragdollRBs = GetComponentsInChildren<Rigidbody>().ToList();
         ragdollRBs.Remove(rb);
+
+        for (int i = 0; i < ragdollRBs.Count; i++)
+        {
+            ragdollRBs[i].isKinematic = true;
+        }
 
         for (int i = 0; i < players.Length; i++)
         {
@@ -50,17 +59,20 @@ public class Enemy : MonoBehaviour
 
     private void PhysicsHandler_onBumped()
     {
+        animator.ResetTrigger("Knockback");
         animator.SetTrigger("Knockback");
     }
 
     public void KnockbackStart()
     {
-        animator.applyRootMotion = true;
+        //animator.applyRootMotion = true;
+        stuned = true;
     }
 
     public void KnockbackEnd()
     {
         animator.applyRootMotion = false;
+        stuned = false;
     }
 
     public void Spawn(Vector3 spawnPos)
@@ -81,14 +93,15 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        animator.SetFloat("Velocity", rb.velocity.magnitude / velocityAanimFactor);
+        velocityAnimSmooth = Mathf.Lerp(velocityAnimSmooth, rb.velocity.magnitude / velocityAanimFactor, Time.deltaTime * 10);
+        animator.SetFloat("Velocity", velocityAnimSmooth);
 
-        rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(navMeshAgent.destination - rb.position).normalized, Time.deltaTime * rotationSmoothSpeed);
+        rb.rotation = Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(navMeshAgent.destination.SetY(0) - rb.position.SetY(0)).normalized, Time.deltaTime * rotationSmoothSpeed);
     }
 
     private void FixedUpdate()
     {
-        if (!meshGO.activeSelf)
+        if (!meshGO.activeSelf || stuned)
         {
             return;
         }
@@ -109,6 +122,14 @@ public class Enemy : MonoBehaviour
                 nextNavigationPoint = navigationPoints[i];
                 break;
             }
+        }
+    }
+
+    public void Death()
+    {
+        for (int i = 0; i < ragdollRBs.Count; i++)
+        {
+            ragdollRBs[i].isKinematic = false;
         }
     }
 
