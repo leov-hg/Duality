@@ -95,10 +95,10 @@ public class PlayerBase : MonoBehaviour
             {
                 vacuumingEffect.gameObject.SetActive(true);
                 vacuumingEffect.DOKill();
-                vacuumingEffect.DOScaleZ(.7f, 0.5f).SetEase(Ease.OutQuad);
+                vacuumingEffect.DOScaleZ(.7f, 0.25f).SetEase(Ease.OutQuad);
 
                 _vacuumEffectAlphaTween.Kill();
-                _vacuumEffectAlphaTween = DOTween.To(() => _vacuumEffectGlobalAlpha, x => _vacuumEffectGlobalAlpha = x, 1, .1f);
+                _vacuumEffectAlphaTween = DOTween.To(() => _vacuumEffectGlobalAlpha, x => _vacuumEffectGlobalAlpha = x, 1, .05f);
                 _vacuumEffectAlphaTween.onUpdate += () => Shader.SetGlobalFloat("GLOBAL_Alpha", _vacuumEffectGlobalAlpha);
 
                 _animator.SetBool("Vacuuming", true);
@@ -106,10 +106,10 @@ public class PlayerBase : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.E))
             {
                 vacuumingEffect.DOKill();
-                vacuumingEffect.DOScaleZ(0, 0.3f).onComplete += () => vacuumingEffect.gameObject.SetActive(false);
+                vacuumingEffect.DOScaleZ(0, 0.15f).onComplete += () => vacuumingEffect.gameObject.SetActive(false);
 
                 _vacuumEffectAlphaTween.Kill();
-                _vacuumEffectAlphaTween = DOTween.To(() => _vacuumEffectGlobalAlpha, x => _vacuumEffectGlobalAlpha = x, 0, .1f).SetDelay(.2f);
+                _vacuumEffectAlphaTween = DOTween.To(() => _vacuumEffectGlobalAlpha, x => _vacuumEffectGlobalAlpha = x, 0, .05f).SetDelay(.1f);
                 _vacuumEffectAlphaTween.onUpdate += () => Shader.SetGlobalFloat("GLOBAL_Alpha", _vacuumEffectGlobalAlpha);
 
                 _animator.SetBool("Vacuuming", false);
