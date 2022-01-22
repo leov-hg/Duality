@@ -10,8 +10,8 @@ public class PlayerBase : MonoBehaviour
     [Separator("References", true)]
     [SerializeField] private PlayerRef playerRef;
     [SerializeField] protected Rigidbody rb;
-    [SerializeField] Transform upperBody;
-    [SerializeField] Transform lowerBody;
+    [SerializeField] protected Transform upperBody;
+    [SerializeField] protected Transform lowerBody;
 
     [Separator("Settings", true)]
     [SerializeField] private float rotationSmoothSpeed = 1;

@@ -25,7 +25,7 @@ public class PlayerBump : PlayerBase
 
             foreach (PhysicsHandler obj in _detectedObjects)
             {
-                if (Mathf.Abs(Vector3.Angle(transform.forward, (obj.transform.position.SetY(0) - transform.position.SetY(0)).normalized)) < detectionAngle)
+                if (Mathf.Abs(Vector3.Angle(upperBody.transform.forward, (obj.transform.position.SetY(0) - upperBody.transform.position.SetY(0)).normalized)) < detectionAngle)
                 {
                     obj.ApplyBumpForce(obj.transform.position - transform.position, ejectForce);
                 }

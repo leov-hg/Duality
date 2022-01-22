@@ -538,7 +538,7 @@ MonoBehaviour:
   animator: {fileID: 1868993038396742378}
   physicsHandler: {fileID: 397961770590569430}
   retargettingDelay: 0.05
-  speed: 10
+  speed: 0
   velocityAanimFactor: 1
   rotationSmoothSpeed: 10
 --- !u!54 &7631540718416667964
@@ -550,7 +550,7 @@ Rigidbody:
   m_GameObject: {fileID: 2957029326234248426}
   serializedVersion: 2
   m_Mass: 20
-  m_Drag: 0
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec7771bad807a342bb8712967095b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpWeight: 15
+  bumpWeight: 20
   vacuumWeight: 3
 --- !u!1 &3190431865379312878
 GameObject:
