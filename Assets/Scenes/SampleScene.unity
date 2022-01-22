@@ -2046,7 +2046,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-188182
+  m_Name: pb_Mesh-21744
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3168,6 +3168,10 @@ PrefabInstance:
     - target: {fileID: 5455766736506864081, guid: 86afa5d34618c0e45865670effcc5e88, type: 3}
       propertyPath: m_Name
       value: PlayerVacuum
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455766736506864081, guid: 86afa5d34618c0e45865670effcc5e88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5455766736506864093, guid: 86afa5d34618c0e45865670effcc5e88, type: 3}
       propertyPath: m_RootOrder
@@ -7321,6 +7325,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerBump
       objectReference: {fileID: 0}
+    - target: {fileID: 7671547938936445432, guid: 7353fdfe2acc80b4fbbd9587e8e432bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7353fdfe2acc80b4fbbd9587e8e432bf, type: 3}
 --- !u!1 &2141900487
@@ -7360,6 +7368,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2256562669963513759, guid: 223fc20e80bae4a4db2602eaa4628172, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3215431111398056270, guid: 223fc20e80bae4a4db2602eaa4628172, type: 3}
+      propertyPath: vacuumWeight
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3603433825498167798, guid: 223fc20e80bae4a4db2602eaa4628172, type: 3}
       propertyPath: m_RootOrder
       value: 5

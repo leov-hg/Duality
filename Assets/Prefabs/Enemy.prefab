@@ -156,6 +156,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 4843766547194133665}
   rb: {fileID: 2957029326234248420}
   retargettingDelay: 0.2
+  speed: 10
 --- !u!54 &2957029326234248420
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec7771bad807a342bb8712967095b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpWeight: 1
+  bumpWeight: 2
   vacuumWeight: 1
 --- !u!1 &3190431865379312878
 GameObject:
