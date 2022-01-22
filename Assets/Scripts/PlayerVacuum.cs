@@ -10,7 +10,7 @@ public class PlayerVacuum : PlayerBase
         
         foreach (PhysicsHandler obj in _detectedObjects)
         {
-            obj.GetComponent<Rigidbody>().AddForce((transform.position - obj.transform.position).normalized * vacuumForce, ForceMode.Acceleration);
+            obj.ApplyVacuumForce(transform.position - obj.transform.position, vacuumForce);
         }
     }
 }
