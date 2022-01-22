@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRef: {fileID: 11400000, guid: 1cfd63a9e7660d94b9e6c50d79ff04fe, type: 2}
   rb: {fileID: 7671547938936445430}
-  rotationSmoothSpeed: 1
-  speed: 1
+  rotationSmoothSpeed: 20
+  speed: 60
   inputType: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  ejectForce: 15
-  ejectionRadius: 2
+  ejectForce: 10
+  ejectionRadius: 4
 --- !u!1001 &4863793817573473554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248422, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248422, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_LocalPosition.y
@@ -43,7 +43,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248422, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248422, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_LocalRotation.w

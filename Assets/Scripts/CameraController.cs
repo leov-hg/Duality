@@ -18,8 +18,7 @@ public class CameraController : MonoBehaviour
     private void LateUpdate()
     {
         int _playersNumber = 1;
-        playersCentroid = players[0].playerBase.transform.position;
-        for (int i = 1; i < players.Length; i++)
+        for (int i = 0; i < players.Length; i++)
         {
             if (players[i].playerBase != null)
             {

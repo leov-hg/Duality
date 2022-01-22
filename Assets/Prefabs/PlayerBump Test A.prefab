@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRef: {fileID: 11400000, guid: e6559baa32e010c48864b39bc0fcb10f, type: 2}
   rb: {fileID: 7671547938936445430}
-  rotationSmoothSpeed: 1
-  speed: 1
+  rotationSmoothSpeed: 10
+  speed: 30
   inputType: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  ejectForce: 15
-  ejectionRadius: 2
+  ejectForce: 10
+  ejectionRadius: 4
 --- !u!1001 &4863793817573473554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957029326234248426, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
       propertyPath: m_Name
-      value: PlayerBump
+      value: PlayerBump Test A
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2957029326234248423, guid: 0fb431b80b6bce2499dd08a39e8a9283, type: 3}
