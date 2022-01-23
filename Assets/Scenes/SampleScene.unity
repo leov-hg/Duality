@@ -3381,6 +3381,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4849110048506521736, guid: 86afa5d34618c0e45865670effcc5e88, type: 3}
+      propertyPath: playerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4849110048506521736, guid: 86afa5d34618c0e45865670effcc5e88, type: 3}
+      propertyPath: inputType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5455766736506864081, guid: 86afa5d34618c0e45865670effcc5e88, type: 3}
       propertyPath: m_Name
       value: PlayerVacuum
@@ -7996,7 +8004,7 @@ PrefabInstance:
       objectReference: {fileID: 553508940}
     - target: {fileID: 7277888511460467184, guid: 7353fdfe2acc80b4fbbd9587e8e432bf, type: 3}
       propertyPath: playerID
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7371842917259951758, guid: 7353fdfe2acc80b4fbbd9587e8e432bf, type: 3}
       propertyPath: m_Mesh

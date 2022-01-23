@@ -93,10 +93,11 @@ public class PlayerBase : MonoBehaviour
 
         if (inputType == InputType.GetKeyDown)
         {
-            if (Input.GetButtonDown("Interact"))
+            if (Input.GetButton("Interact"))
             {
                 Interact();
                 _animator.SetTrigger("Bump");
+                DOVirtual.DelayedCall(0.2f, () => _animator.ResetTrigger("Bump"));
             }
         }
         else if (inputType == InputType.GetKey)
