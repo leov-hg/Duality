@@ -158,6 +158,7 @@ public class PlayerBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print(other.name);
         _detectedCollider.Add(other);
     }
 
