@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject meshGO;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private new Collider collider;
     [SerializeField] private Animator animator;
     [SerializeField] private PhysicsHandler physicsHandler;
 
@@ -28,10 +29,12 @@ public class Enemy : MonoBehaviour
     private List<PlayerBase> activePlayers = new List<PlayerBase>();
     private Vector3[] navigationPoints;
     private Vector3 nextNavigationPoint;
-    private List<Rigidbody> ragdollRBs = new List<Rigidbody>();
+    [SerializeField] private Rigidbody[] ragdollRBs;
 
     private bool stuned = false;
     private float velocityAnimSmooth = 0;
+    private InteractableObject _tempInteractableObject;
+    private bool alive = false;
 
 
     private void Awake()
@@ -41,15 +44,22 @@ public class Enemy : MonoBehaviour
         rb.detectCollisions = false;
         rb.isKinematic = true;
 
-        ragdollRBs = GetComponentsInChildren<Rigidbody>().ToList();
-        ragdollRBs.Remove(rb);
+        physicsHandler.active = false;
 
-        for (int i = 0; i < ragdollRBs.Count; i++)
+        //ragdollRBs = GetComponentsInChildren<Rigidbody>();
+
+        for (int i = 0; i < ragdollRBs.Length; i++)
         {
             ragdollRBs[i].isKinematic = true;
         }
 
         physicsHandler.onBumped += PhysicsHandler_onBumped;
+        physicsHandler.onExploded += Death;
+    }
+
+    private void PhysicsHandler_onExploded()
+    {
+        throw new NotImplementedException();
     }
 
     private void PhysicsHandler_onBumped()
@@ -86,12 +96,16 @@ public class Enemy : MonoBehaviour
         rb.detectCollisions = true;
         rb.isKinematic = false;
 
+        physicsHandler.active = true;
+
         DOVirtual.DelayedCall(retargettingDelay, RefreshTargetting).SetLoops(-1, LoopType.Restart).SetDelay(retargettingDelay);
+
+        alive = true;
     }
 
     private void Update()
     {
-        if (!meshGO.activeSelf)
+        if (!meshGO.activeSelf || !alive)
         {
             return;
         }
@@ -104,7 +118,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!meshGO.activeSelf || stuned)
+        if (!meshGO.activeSelf || stuned || !alive)
         {
             return;
         }
@@ -115,7 +129,20 @@ public class Enemy : MonoBehaviour
     public void RefreshTargetting()
     {
         navMeshAgent.transform.position = rb.position;
-        navMeshAgent.SetDestination(activePlayers.GetRandom().transform.position);
+
+        float closestDist = Mathf.Infinity;
+        int closestID = 0;
+        for (int i = 0; i < activePlayers.Count; i++)
+        {
+            float dist = Vector3.SqrMagnitude(activePlayers[i].transform.position - rb.position);
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closestID = i;
+            }
+        }
+
+        navMeshAgent.SetDestination(activePlayers[closestID].transform.position);
         navigationPoints = navMeshAgent.path.GetPointsOnPath(1).ToArray();
 
         for (int i = navigationPoints.Length - 1; i >= 0; i--)
@@ -129,13 +156,33 @@ public class Enemy : MonoBehaviour
     }
 
     [ButtonMethod()]
-    public void Death()
+    public void Death(Vector3 impactPos, float strength)
     {
+        if (!alive) return;
+
+        alive = false;
+
         onDeath?.Invoke(this);
         animator.enabled = false;
-        for (int i = 0; i < ragdollRBs.Count; i++)
+        for (int i = 0; i < ragdollRBs.Length; i++)
         {
             ragdollRBs[i].isKinematic = false;
+        }
+
+        DOVirtual.DelayedCall(0.1f, () => DeathForce(impactPos, strength));
+
+
+        rb.detectCollisions = false;
+        physicsHandler.active = false;
+        collider.enabled = false;
+        navMeshAgent.enabled = false;
+    }
+
+    private void DeathForce(Vector3 impactPos, float strength)
+    {
+        for (int i = 0; i < ragdollRBs.Length; i++)
+        {
+            //ragdollRBs[i].AddForce(((ragdollRBs[i].position - impactPos).normalized + Vector3.up) * strength, ForceMode.Impulse);
         }
     }
 
