@@ -55,7 +55,7 @@ MonoBehaviour:
   animator: {fileID: 2504109273310863351}
   physicsHandler: {fileID: 1039178474612218866}
   retargettingDelay: 0.05
-  speed: 25
+  speed: 15
   velocityAanimFactor: 1
   rotationSmoothSpeed: 10
   ragdollRBs:
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec7771bad807a342bb8712967095b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumpWeight: 10
+  bumpWeight: 1
   vacuumWeight: 10
   active: 1
 --- !u!114 &4899820721225825551
