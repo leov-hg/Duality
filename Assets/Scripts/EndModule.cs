@@ -18,5 +18,10 @@ public class EndModule : MonoBehaviour
         {
             GameManager.Instance.CompleteLevel();
         }
+
+        if (other.GetComponentInParent<Enemy>())
+        {
+            other.GetComponentInParent<Enemy>().Death(Vector3.zero, 0);
+        }
     }
 }

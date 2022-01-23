@@ -53,6 +53,7 @@ public class GameManager : Singleton<GameManager>
         onLevelStart?.Invoke();
         StartCoroutine(RoundsLogic());
         _levelStarted = true;
+        StartLevel();
     }
 
     private void Update()
@@ -60,8 +61,8 @@ public class GameManager : Singleton<GameManager>
         if (!_levelStarted && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")))
         {
             menuCanvas.DOFade(0, 0.5f);
-            focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true)
-                .SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
+            //focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true)
+            //    .SetLoops(2, LoopType.Yoyo).SetDelay(1).onComplete += StartLevel;
         }
     }
 
