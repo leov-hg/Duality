@@ -14,7 +14,7 @@ public class EndModule : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.attachedRigidbody && other.attachedRigidbody.TryGetComponent(out GoalObject goalObject))
+        if (other.GetComponentInParent<GoalObject>())
         {
             GameManager.Instance.CompleteLevel();
         }
