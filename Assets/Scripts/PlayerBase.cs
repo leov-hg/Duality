@@ -14,7 +14,6 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected Transform upperBody;
     [SerializeField] protected Transform lowerBody;
     [SerializeField] private Transform vacuumingEffect;
-    [SerializeField] private ParticleSystem bumpEffect;
 
     [Separator("Settings", true)]
     [SerializeField] private float rotationSmoothSpeed = 1;
@@ -33,8 +32,11 @@ public class PlayerBase : MonoBehaviour
     private Camera _mainCam;
     private Ray _camRay;
     private bool _active;
-    private float _vacuumEffectGlobalAlpha;
+    private float _vacuumEffectGlobalAlpha = 1;
+    private float _bumpEffectGlobalAlpha;
+    private float _bumpEffectPanVector = 1;
     private Tween _vacuumEffectAlphaTween;
+    private Tween _bumpEffectAlphaTween;
 
 
     private void Awake()
@@ -50,7 +52,8 @@ public class PlayerBase : MonoBehaviour
             vacuumingEffect.gameObject.SetActive(false);
             vacuumingEffect.localScale = new Vector3(1, 1, 0);
             _vacuumEffectGlobalAlpha = 1;
-            Shader.SetGlobalFloat("GLOBAL_Alpha", _vacuumEffectGlobalAlpha);
+            Shader.SetGlobalFloat("GLOBAL_VacuumAlpha", _vacuumEffectGlobalAlpha);
+            Shader.SetGlobalFloat("GLOBAL_BumpAlpha", _bumpEffectGlobalAlpha);
         }
     }
 
@@ -83,7 +86,6 @@ public class PlayerBase : MonoBehaviour
             {
                 Interact();
                 _animator.SetTrigger("Bump");
-                //bumpEffect.Play();
             }
         }
         else if (inputType == InputType.GetKey)
@@ -101,7 +103,7 @@ public class PlayerBase : MonoBehaviour
 
                 _vacuumEffectAlphaTween.Kill();
                 _vacuumEffectAlphaTween = DOTween.To(() => _vacuumEffectGlobalAlpha, x => _vacuumEffectGlobalAlpha = x, 1, .05f);
-                _vacuumEffectAlphaTween.onUpdate += () => Shader.SetGlobalFloat("GLOBAL_Alpha", _vacuumEffectGlobalAlpha);
+                _vacuumEffectAlphaTween.onUpdate += () => Shader.SetGlobalFloat("GLOBAL_VacuumAlpha", _vacuumEffectGlobalAlpha);
 
                 _animator.SetBool("Vacuuming", true);
             }
@@ -112,7 +114,7 @@ public class PlayerBase : MonoBehaviour
 
                 _vacuumEffectAlphaTween.Kill();
                 _vacuumEffectAlphaTween = DOTween.To(() => _vacuumEffectGlobalAlpha, x => _vacuumEffectGlobalAlpha = x, 0, .05f).SetDelay(.1f);
-                _vacuumEffectAlphaTween.onUpdate += () => Shader.SetGlobalFloat("GLOBAL_Alpha", _vacuumEffectGlobalAlpha);
+                _vacuumEffectAlphaTween.onUpdate += () => Shader.SetGlobalFloat("GLOBAL_VacuumAlpha", _vacuumEffectGlobalAlpha);
 
                 _animator.SetBool("Vacuuming", false);
             }

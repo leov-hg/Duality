@@ -24,7 +24,9 @@ Shader "Toony Colors Pro 2/User/Particle"
 	{
 		Tags
 		{
-			"RenderType"="Opaque"
+			"RenderType"="Transparent"
+			"Queue"="Transparent"
+			"IgnoreProjectors"="True"
 		}
 
 		CGINCLUDE
@@ -51,10 +53,11 @@ Shader "Toony Colors Pro 2/User/Particle"
 		ENDCG
 
 		// Main Surface Shader
+		Blend SrcAlpha OneMinusSrcAlpha
 
 		CGPROGRAM
 
-		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha nolightmap nofog nolppv
+		#pragma surface surf ToonyColorsCustom vertex:vertex_surface exclude_path:deferred exclude_path:prepass keepalpha nolightmap nofog nolppv keepalpha alpha:blend
 		#pragma target 3.0
 
 		//================================================================
@@ -214,5 +217,5 @@ Shader "Toony Colors Pro 2/User/Particle"
 	CustomEditor "ToonyColorsPro.ShaderGenerator.MaterialInspector_SG2"
 }
 
-/* TCP_DATA u config(unity:"2020.3.18f1";ver:"2.8.1";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","UNITY_2019_4","UNITY_2020_1"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0"];shaderProperties:list[,sp(name:"Main Color";imps:list[imp_vcolors(cc:4;chan:"RGBA";guid:"66827657-1a51-4663-b5bf-d453df374194";op:Multiply;lbl:"Main Color";gpu_inst:False;locked:False;impl_index:-1)];layers:list[];unlocked:list[];clones:dict[];isClone:False)];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
-/* TCP_HASH 948844e5518fe72be31730684922b6f7 */
+/* TCP_DATA u config(unity:"2020.3.18f1";ver:"2.8.1";tmplt:"SG2_Template_Default";features:list["UNITY_5_4","UNITY_5_5","UNITY_5_6","UNITY_2017_1","UNITY_2018_1","UNITY_2018_2","UNITY_2018_3","UNITY_2019_1","UNITY_2019_2","UNITY_2019_3","UNITY_2019_4","UNITY_2020_1","SHADER_BLENDING","ALPHA_BLENDING"];flags:list[];flags_extra:dict[];keywords:dict[RENDER_TYPE="Opaque",RampTextureDrawer="[TCP2Gradient]",RampTextureLabel="Ramp Texture",SHADER_TARGET="3.0"];shaderProperties:list[,sp(name:"Main Color";imps:list[imp_vcolors(cc:4;chan:"RGBA";guid:"66827657-1a51-4663-b5bf-d453df374194";op:Multiply;lbl:"Main Color";gpu_inst:False;locked:False;impl_index:-1)];layers:list[];unlocked:list[];clones:dict[];isClone:False)];customTextures:list[];codeInjection:codeInjection(injectedFiles:list[];mark:False);matLayers:list[]) */
+/* TCP_HASH f903b7c141c89e40766fd175b94da68d */

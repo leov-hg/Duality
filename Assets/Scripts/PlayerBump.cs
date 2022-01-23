@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using MyBox;
 using UnityEngine;
 
@@ -8,8 +9,11 @@ public class PlayerBump : PlayerBase
     [SerializeField] private float cooldown;
     [SerializeField] private float detectionAngle = 15;
     [SerializeField] private SphereCollider detectionCollider;
+    [SerializeField] private ParticleSystem bumpEffect;
+    [SerializeField] private Material bumpConeMat;
 
     private float _timeCpt;
+
 
     protected override void Update()
     {
@@ -33,6 +37,11 @@ public class PlayerBump : PlayerBase
             }
 
             _timeCpt = 0;
+
+            bumpConeMat.SetVector("_MainTex_ST", new Vector4(1, 1, 1, 0));
+            bumpConeMat.DOKill();
+            bumpConeMat.DOVector(new Vector4(1, 1, -1, 0), "_MainTex_ST", .2f);
+            bumpEffect.Play();
         }
     }
 

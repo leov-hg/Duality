@@ -5,7 +5,11 @@
     "LoadAllShaders": false,
     "CustomOutputPath": "/JMO Assets/Toony Colors Pro/Shaders Generated/",
     "LastImplementationExportImportPath": "C:/Users/Administrator/Documents/Unity Projects/Duality/Assets",
-    "OpenedFoldouts": [],
+    "OpenedFoldouts": [
+        "LIGHTING",
+        "STYLIZATION",
+        "TRANSPARENCY/BLENDING"
+    ],
     "UseCustomFont": true,
     "CustomFont": {
         "fileID": 12800000,
