@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zombie
+  m_Name: piques
   m_Shader: {fileID: 4800000, guid: ef3178aabaab247448c46c904e37bf43, type: 3}
-  m_ShaderKeywords: TCP2_DISABLE_WRAPPED_LIGHT TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING_LIGHTMASK
-    TCP2_SHADOW_LIGHT_COLOR TCP2_UV_NORMALS_FULL
+  m_ShaderKeywords: TCP2_DISABLE_WRAPPED_LIGHT TCP2_REFLECTIONS_FRESNEL TCP2_RIM_LIGHTING
+    TCP2_RIM_LIGHTING_LIGHTMASK TCP2_SHADOW_LIGHT_COLOR TCP2_SPECULAR TCP2_UV_NORMALS_FULL
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 2721d180f6d398a4f9ef5c34a90bc964, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8e42b551bd1029144b829ff4df2fea48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -45,7 +45,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 2721d180f6d398a4f9ef5c34a90bc964, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8e42b551bd1029144b829ff4df2fea48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapMask:
@@ -114,7 +114,7 @@ Material:
     - _OutlinePixelSizeType: 0
     - _OutlineTextureLOD: 5
     - _OutlineTextureType: 0
-    - _OutlineWidth: 1.78
+    - _OutlineWidth: 1
     - _Parallax: 0.02
     - _RampBands: 4
     - _RampBandsSmoothing: 0.1
@@ -122,15 +122,15 @@ Material:
     - _RampScale: 1
     - _RampSmooth: 0.2
     - _RampSmoothAdd: 0.75
-    - _RampSmoothing: 0.064
-    - _RampThreshold: 0.532
+    - _RampSmoothing: 0.1
+    - _RampThreshold: 0.5
     - _RampType: 0
     - _ReceiveShadowsOff: 1
     - _ReflectionMapType: 0
     - _ReflectionSmoothness: 0.5
     - _RenderingMode: 0
-    - _RimMax: 0.85
-    - _RimMin: 0.6
+    - _RimMax: 1.54
+    - _RimMin: 0.08
     - _RimStrength: 0.5
     - _ShadowColorLightAtten: 1
     - _SingleIndirectColor: 0
@@ -139,7 +139,7 @@ Material:
     - _SpecSmooth: 1
     - _SpecularHighlights: 1
     - _SpecularMapType: 0
-    - _SpecularRoughness: 0.5
+    - _SpecularRoughness: 0.22
     - _SpecularToonSize: 0.25
     - _SpecularToonSmoothness: 0.05
     - _SpecularType: 0
@@ -159,20 +159,20 @@ Material:
     - _UseOcclusion: 0
     - _UseOutline: 1
     - _UseReflections: 0
-    - _UseRim: 0
+    - _UseRim: 1
     - _UseRimLightMask: 1
     - _UseShadowTexture: 0
-    - _UseSpecular: 0
+    - _UseSpecular: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.61960787, g: 0.62966233, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0.05951124, g: 0.057805434, b: 0.2581829, a: 1}
+    - _OutlineColor: {r: 0.0754717, g: 0.06792453, b: 0.07092502, a: 1}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.6}
-    - _SColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+    - _SColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 0.75, g: 0.75, b: 0.75, a: 1}
   m_BuildTextureStacks: []
