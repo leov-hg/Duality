@@ -94,7 +94,7 @@ Transform:
   m_Children:
   - {fileID: 9204749744651744083}
   m_Father: {fileID: 5832701488702573327}
-  m_RootOrder: 6
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &1549868788855949585
 ParticleSystem:
@@ -4926,35 +4926,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &7277888511460467184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7671547938936445432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 204912da178726d4191b5e41bc6c2a01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRef: {fileID: 11400000, guid: e6559baa32e010c48864b39bc0fcb10f, type: 2}
-  rb: {fileID: 7671547938936445430}
-  upperBody: {fileID: 5832701488702573327}
-  lowerBody: {fileID: 4555263152611052986}
-  vacuumingEffect: {fileID: 0}
-  bumpEffect: {fileID: 1549868788855949585}
-  bumpConeMat: {fileID: 2100000, guid: 9db4aa134195db54a87c97e44ecbd40f, type: 2}
-  rotationSmoothSpeed: 10
-  speed: 60
-  inputType: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  ejectForce: 20
-  cooldown: 0.5
-  detectionAngle: 56.48
-  detectionCollider: {fileID: 4030908125357092766}
 --- !u!1 &7179083875919047623
 GameObject:
   m_ObjectHideFlags: 0
@@ -5268,6 +5239,36 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &7277888511460467184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7671547938936445432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204912da178726d4191b5e41bc6c2a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRef: {fileID: 11400000, guid: e6559baa32e010c48864b39bc0fcb10f, type: 2}
+  rb: {fileID: 7671547938936445430}
+  upperBody: {fileID: 5832701488702573327}
+  lowerBody: {fileID: 4555263152611052986}
+  vacuumingEffect: {fileID: 0}
+  rotationSmoothSpeed: 10
+  speed: 60
+  inputType: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  playerID: 1
+  ejectForce: 20
+  cooldown: 0.5
+  detectionAngle: 56.48
+  detectionCollider: {fileID: 4030908125357092766}
+  bumpEffect: {fileID: 1549868788855949585}
+  bumpConeMat: {fileID: 2100000, guid: 9db4aa134195db54a87c97e44ecbd40f, type: 2}
 --- !u!1 &8973974231685446816
 GameObject:
   m_ObjectHideFlags: 0
@@ -10312,7 +10313,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 54ae072a5d7e067439c392758fe395ce, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54ae072a5d7e067439c392758fe395ce, type: 3}
       propertyPath: m_LocalScale.x
