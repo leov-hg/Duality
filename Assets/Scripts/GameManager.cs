@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (!_levelStarted && Input.GetMouseButtonDown(0))
+        if (!_levelStarted && (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")))
         {
             menuCanvas.DOFade(0, 0.5f);
             focusCamTargetPoint.DOMove(endModule.slabPoint.position, focusingGoalSpeed).SetSpeedBased(true)

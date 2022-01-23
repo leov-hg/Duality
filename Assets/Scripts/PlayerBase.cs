@@ -75,14 +75,17 @@ public class PlayerBase : MonoBehaviour
         _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
         if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
         {
-            _targetView = hitInfo.point.SetY(upperBody.transform.position.y);
+            //_targetView = hitInfo.point.SetY(upperBody.transform.position.y);
         }
+
+        _targetView = transform.position.SetY(upperBody.transform.position.y) + new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
+        
         
         upperBody.rotation = Quaternion.Lerp(upperBody.rotation, Quaternion.LookRotation((_targetView - upperBody.position).normalized), Time.deltaTime * rotationSmoothSpeed);
 
         if (inputType == InputType.GetKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Interact"))
             {
                 Interact();
                 _animator.SetTrigger("Bump");
