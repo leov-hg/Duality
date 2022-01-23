@@ -17,8 +17,8 @@ TagManager:
   - Controller
   - Ragdoll
   - Interactable
-  - 
-  - 
+  - EndObject
+  - Blocker
   - 
   - 
   - 

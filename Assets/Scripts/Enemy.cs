@@ -128,6 +128,11 @@ public class Enemy : MonoBehaviour
 
     public void RefreshTargetting()
     {
+        if (!alive)
+        {
+            return;
+        }
+
         navMeshAgent.transform.position = rb.position;
 
         float closestDist = Mathf.Infinity;

@@ -108,6 +108,20 @@ Transform:
   m_Father: {fileID: 1946044806729233503}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &2128217897964908705
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892468839746623159}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1453043773871479701, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
 --- !u!1 &1621876081211320543
 GameObject:
   m_ObjectHideFlags: 0
@@ -11192,6 +11206,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 836eac5af5c825049bb6ff59488fb56a, type: 2}
@@ -11203,11 +11221,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
 --- !u!4 &1227431896873929741 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
+  m_PrefabInstance: {fileID: 1621876081199606758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892468839746623159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bf10f682417003a4dacf6b32e0e354ae, type: 3}
   m_PrefabInstance: {fileID: 1621876081199606758}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1621876081199980527
