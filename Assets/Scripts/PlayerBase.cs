@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 
 public enum InputType { GetKey, GetKeyDown }
+public enum PlayerID {Player1, Player2}
 
 public class PlayerBase : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] private InputType inputType;
     [Space(10)]
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private PlayerID playerID;
 
     protected float _currentSpeed = 0;
     protected List<PhysicsHandler> _detectedObjects = new List<PhysicsHandler>();
@@ -66,21 +68,27 @@ public class PlayerBase : MonoBehaviour
     {
         if (!_active) return;
 
+        if (playerID == PlayerID.Player1)
+        {
+            _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+            
+            _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
+            if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
+            {
+                _targetView = hitInfo.point.SetY(upperBody.transform.position.y);
+            }
+        }
+        else
+        {
+            _targetView = transform.position.SetY(upperBody.transform.position.y) + new Vector3(Input.GetAxis("Horizontal3"), 0, Input.GetAxis("Vertical3"));
+            
+            _direction = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2")).normalized;
+        }
 
-        _direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+
         _direction = Vector3.ClampMagnitude(_direction, 1);
 
         lowerBody.LookAt(lowerBody.transform.position + _direction);
-
-        _camRay = _mainCam.ScreenPointToRay(Input.mousePosition + Vector3.forward);
-        if (Physics.Raycast(_camRay, out RaycastHit hitInfo, 100, groundLayer))
-        {
-            //_targetView = hitInfo.point.SetY(upperBody.transform.position.y);
-        }
-
-        _targetView = transform.position.SetY(upperBody.transform.position.y) + new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
-        
-        
         upperBody.rotation = Quaternion.Lerp(upperBody.rotation, Quaternion.LookRotation((_targetView - upperBody.position).normalized), Time.deltaTime * rotationSmoothSpeed);
 
         if (inputType == InputType.GetKeyDown)
