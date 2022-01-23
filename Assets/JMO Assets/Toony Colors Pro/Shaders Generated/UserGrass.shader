@@ -5,6 +5,12 @@ Shader "Toony Colors Pro 2/User/Grass"
 {
 	Properties
 	{
+		[TCP2HeaderHelp(Displacement)]
+		_WindNoise ("Wind Noise", 2D) = "white" {}
+		_WindStrength ("Wind Strength", float) = 1
+		_WindPan ("Wind Pan", Vector) = (0, 0, 0, 0)
+		_WindNoiseST ("Wind Noise ST", Vector) = (0, 0, 0, 0)
+		
 		[TCP2HeaderHelp(Base)]
 		_Color ("Color", Color) = (1,1,1,1)
 		[TCP2ColorNoAlpha] _HColor ("Highlight Color", Color) = (0.75,0.75,0.75,1)
@@ -224,6 +230,7 @@ Shader "Toony Colors Pro 2/User/Grass"
 		// Vertex input
 		struct appdata_tcp2
 		{
+			float4 color : COLOR;
 			float4 vertex : POSITION;
 			float3 normal : NORMAL;
 			float4 texcoord0 : TEXCOORD0;
@@ -269,13 +276,22 @@ Shader "Toony Colors Pro 2/User/Grass"
 		//================================================================
 		// VERTEX FUNCTION
 
+		sampler2D _WindNoise;
+		float _WindStrength;
+		float4 _WindPan;
+		float4 _WindNoiseST;
+
 		void vertex_surface(inout appdata_tcp2 v, out Input output)
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, output);
 
 			// Texture Coordinates
 			output.texcoord0.xy = v.texcoord0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+			
+			float3 worldpos = mul(unity_ObjectToWorld, v.vertex);
+			float windTex = tex2Dlod(_WindNoise, float4((worldpos.x * _WindNoiseST.x) + _Time.y * _WindPan.x, (worldpos.z * _WindNoiseST.y) + _Time.y * _WindPan.y, 0, 0));
 
+			v.vertex.x += (windTex * (_WindStrength * 2 - 1) * (1 - v.color.r));
 		}
 
 		//================================================================
@@ -389,25 +405,25 @@ Shader "Toony Colors Pro 2/User/Grass"
 
 		ENDCG
 
-		// Outline
-		Pass
-		{
-			Name "Outline"
-			Tags
-			{
-				"LightMode"="ForwardBase"
-			}
-			Cull Front
+		// // Outline
+		// Pass
+		// {
+		// 	Name "Outline"
+		// 	Tags
+		// 	{
+		// 		"LightMode"="ForwardBase"
+		// 	}
+		// 	Cull Front
 
-			CGPROGRAM
-			#pragma vertex vertex_outline
-			#pragma fragment fragment_outline
-			#pragma target 3.0
-			#pragma multi_compile _ TCP2_COLORS_AS_NORMALS TCP2_TANGENT_AS_NORMALS TCP2_UV1_AS_NORMALS TCP2_UV2_AS_NORMALS TCP2_UV3_AS_NORMALS TCP2_UV4_AS_NORMALS
-			#pragma multi_compile _ TCP2_UV_NORMALS_FULL TCP2_UV_NORMALS_ZW
-			#pragma multi_compile_instancing
-			ENDCG
-		}
+		// 	CGPROGRAM
+		// 	#pragma vertex vertex_outline
+		// 	#pragma fragment fragment_outline
+		// 	#pragma target 3.0
+		// 	#pragma multi_compile _ TCP2_COLORS_AS_NORMALS TCP2_TANGENT_AS_NORMALS TCP2_UV1_AS_NORMALS TCP2_UV2_AS_NORMALS TCP2_UV3_AS_NORMALS TCP2_UV4_AS_NORMALS
+		// 	#pragma multi_compile _ TCP2_UV_NORMALS_FULL TCP2_UV_NORMALS_ZW
+		// 	#pragma multi_compile_instancing
+		// 	ENDCG
+		// }
 	}
 
 	Fallback "Diffuse"
