@@ -49,14 +49,6 @@ public class Enemy : MonoBehaviour
             ragdollRBs[i].isKinematic = true;
         }
 
-        for (int i = 0; i < players.Length; i++)
-        {
-            if (players[i].playerBase)
-            {
-                activePlayers.Add(players[i].playerBase);
-            }
-        }
-
         physicsHandler.onBumped += PhysicsHandler_onBumped;
     }
 
@@ -80,6 +72,14 @@ public class Enemy : MonoBehaviour
 
     public void Spawn(Vector3 spawnPos)
     {
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].playerBase)
+            {
+                activePlayers.Add(players[i].playerBase);
+            }
+        }
+
         transform.position = spawnPos;
         meshGO.SetActive(true);
         navMeshAgent.enabled = true;
