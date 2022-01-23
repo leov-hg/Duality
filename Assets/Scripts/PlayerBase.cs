@@ -93,7 +93,7 @@ public class PlayerBase : MonoBehaviour
 
         if (inputType == InputType.GetKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetButton("Interact"))
+            if (Input.GetButtonDown("Interact"))
             {
                 Interact();
                 _animator.SetTrigger("Bump");
@@ -150,7 +150,7 @@ public class PlayerBase : MonoBehaviour
         foreach (Collider col in _detectedCollider)
         {
             PhysicsHandler rb = col.GetComponentInParent<PhysicsHandler>();
-            if (rb != null)
+            if (rb != null && !_detectedObjects.Contains(rb))
                 _detectedObjects.Add(rb);
         }
     }
