@@ -14,6 +14,7 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] protected Transform upperBody;
     [SerializeField] protected Transform lowerBody;
     [SerializeField] private Transform vacuumingEffect;
+    [SerializeField] private ParticleSystem bumpEffect;
 
     [Separator("Settings", true)]
     [SerializeField] private float rotationSmoothSpeed = 1;
@@ -73,7 +74,7 @@ public class PlayerBase : MonoBehaviour
         {
             _targetView = hitInfo.point.SetY(upperBody.transform.position.y);
         }
-
+        
         upperBody.rotation = Quaternion.Lerp(upperBody.rotation, Quaternion.LookRotation((_targetView - upperBody.position).normalized), Time.deltaTime * rotationSmoothSpeed);
 
         if (inputType == InputType.GetKeyDown)
@@ -82,6 +83,7 @@ public class PlayerBase : MonoBehaviour
             {
                 Interact();
                 _animator.SetTrigger("Bump");
+                //bumpEffect.Play();
             }
         }
         else if (inputType == InputType.GetKey)
